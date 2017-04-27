@@ -27,6 +27,9 @@ class Category extends Model implements Transformable
         ];
     }*/
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tickets()
     {
         return $this->hasMany(Ticket::class);

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\TicketRepository;
+use App\Repositories\Models\Agent;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -30,6 +32,13 @@ class TicketController extends Controller
      */
     public function index()
     {
+       /*$tedt =  $this->tickets->tickets(0);
+      /* $ag = User::with('agentTickets')->whereHas('roles',function ($query){
+           $query->where('name','agent');
+       })->get();*/
+
+       //d($ag->pluck('name'));*/
+
         $completed = 0;
         return view('tickets.index', compact('completed'));
     }

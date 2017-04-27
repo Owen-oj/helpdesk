@@ -19,9 +19,9 @@
 <script>
     $(function() {
         $('#users-table').DataTable({
+            ajax: '{{  route('tickets.indextable',$completed) }}',
             processing: true,
             serverSide: true,
-            ajax: '{{  route('tickets.indextable',$completed) }}',
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'subject', name: 'Subject' },

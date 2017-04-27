@@ -13,6 +13,16 @@ class Agent extends User implements Transformable
 
     use TransformableTrait;
 
-    protected $fillable = [];
+
+
+
+   /* public static function listAll()
+    {
+        $agents = User::whereHas('roles',function ($query){
+            $query->where('name','agent');
+        });
+
+        return $agents;
+    }*/
 
 }

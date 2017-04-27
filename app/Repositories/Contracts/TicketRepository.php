@@ -29,4 +29,5 @@ interface TicketRepository extends RepositoryInterface
      * @return mixed
      */
     public function completedTickets ();
+
 }

@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'email' => 'admin@gimpa.com',
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
@@ -34,6 +34,5 @@ $factory->define(App\Repositories\Models\Ticket::class, function (Faker\Generato
         'agent_id' =>2,
         'status_id' =>1,
         'category_id' =>1,
-        'location' => $faker->city
     ];
 });

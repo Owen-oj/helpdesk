@@ -14,7 +14,6 @@ class Ticket extends Model implements Transformable
     protected $fillable = [
         'subject',
         'content',
-        'location',
         'status_id',
         'category_id',
         'priority_id',

@@ -17,7 +17,6 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->string('subject')->index();
             $table->longText('content');
-            $table->string('location')->index();
             $table->integer('status_id')->unsigned()->index();
             $table->integer('priority_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
