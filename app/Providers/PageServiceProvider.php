@@ -24,6 +24,13 @@ class PageServiceProvider extends ServiceProvider
            $view->with('select',$select);
         });
 
+        view()->composer('dashboard',function ($view){
+
+                $categories = Category::with('tickets')->get();
+
+            $view->with('categories',$categories);
+        });
+
         view()->composer('dashboard',DashboardComposer::class);
     }
 

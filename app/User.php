@@ -46,8 +46,21 @@ class User extends Authenticatable
         return $agents;
     }
 
+    public static function listUsers()
+    {
+        $users = User::with('userTickets')->whereHas('roles',function ($query){
+            $query->where('name','user');
+        })->get();
+        return $users;
+    }
+
     public function getTicketCountAttribute()
     {
         return $this->agentTickets->count();
+    }
+
+    public function userTickets()
+    {
+        return $this->hasMany(Ticket::class,'user_id','id');
     }
 }

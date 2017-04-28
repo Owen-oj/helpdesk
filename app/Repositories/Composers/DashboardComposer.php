@@ -24,11 +24,14 @@ class DashboardComposer
         $view->with('closedTickets',$this->tickets->tickets(1)->count());
 
         $datacounts = User::listAll();
+        $users = User::listUsers();
+
         $pluck =$datacounts->pluck('name');
 
         //dd($v->all());
         $view->with('agentTicketCount',$datacounts->implode('ticketCount',','));
-        $view->with('agentNames',$pluck->flatten());
+        $view->with('agents',$datacounts);
+        $view->with('users',$users);
     }
 
 }

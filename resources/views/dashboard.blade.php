@@ -55,7 +55,7 @@
 <div class="col-md-8 ">
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading">Agent Ticket Share</div>
+            <div class="panel-heading">Tickets</div>
             <div class="panel-body">
                 <canvas id="agents"></canvas>
             </div>
@@ -85,9 +85,92 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-                    <div role="tabpanel" class="tab-pane" id="profile">...</div>
-                    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Categories
+                                <span class="pull-right text-muted small">
+                                <em>
+                                   Open/Close
+                                </em>
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                @foreach($categories as $category)
+                                    <a href="#" class="list-group-item">
+                                    <span style="color: {{ $category->color }}">
+                                        {{ $category->name }} <span class="badge">{{ $category->tickets()->count() }}</span>
+                                    </span>
+                                        <span class="pull-right text-muted small">
+                                    <em>
+                                        {{ $category->tickets()->whereNull('completed_at')->count() }} /
+                                        {{ $category->tickets()->whereNotNull('completed_at')->count() }}
+                                    </em>
+                                     </span>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <a href="#" class="list-group-item disabled">
+                        <span>Agents
+                            <span class="badge">{{0 }}</span>
+                            </span>
+                        <span class="pull-right text-muted small">
+                                <em>
+                                    Open/Close
+                                </em>
+                            </span>
+                        </a>
+                        @foreach($agents as $agent)
+                            <a href="#" class="list-group-item">
+                                <span>
+                                    {{ $agent->name }}
+                                    <span class="badge">
+                                        {{ $agent->agentTickets()->whereNull('completed_at')->count()  +
+                                         $agent->agentTickets()->whereNotNull('completed_at')->count() }}
+                                    </span>
+                                </span>
+                                <span class="pull-right text-muted small">
+                                    <em>
+                                        {{ $agent->agentTickets()->whereNull('completed_at')->count() }} /
+                                        {{ $agent->agentTickets()->whereNotNull('completed_at')->count() }}
+                                    </em>
+                                </span>
+                            </a>
+                        @endforeach
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                        <a href="#" class="list-group-item disabled">
+                            <span>Users
+                                <span class="badge">Total</span>
+                            </span>
+                            <span class="pull-right text-muted small">
+                                <em>
+                                    Open /
+                                    Closed
+                                </em>
+                            </span>
+                        </a>
+                        @foreach($users as $user)
+                            <a href="#" class="list-group-item">
+                                <span>
+                                    {{ $user->name }}
+                                    <span class="badge">
+                                        {{ $user->userTickets()->whereNull('completed_at')->count()  +
+                                         $user->userTickets(true)->whereNotNull('completed_at')->count() }}
+                                    </span>
+                                </span>
+                                <span class="pull-right text-muted small">
+                                    <em>
+                                        {{ $user->userTickets()->whereNull('completed_at')->count() }} /
+                                        {{ $user->userTickets()->whereNotNull('completed_at')->count() }}
+                                    </em>
+                                </span>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
 
             </div>
@@ -100,22 +183,23 @@
 <script>
 
     let data = {
-        labels: '{{$agentNames}}',
+        labels: ['Open','Closed'],
         datasets:[
-            {data:['{{$agentTicketCount}}'],
+            {
+                label:'Open/Close Tickets',
+                data:['{{$openTickets}}','{{$closedTickets}}'],
 
             backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
+                "#ff4736",
+                "#4beb8b",
             ],
 
             }
         ]
     };
     let context = document.querySelector('#agents').getContext('2d');
-    var myLineChart = new Chart(context, {
-        type: 'pie',
+    let myLineChart = new Chart(context, {
+        type: 'bar',
         data: data,
     });
 </script>
@@ -136,7 +220,7 @@
         ]
     };
     let catec = document.querySelector('#categories').getContext('2d');
-    var myLineChart = new Chart(catec, {
+    let myPieChart = new Chart(catec, {
         type: 'pie',
         data: cat,
     });
