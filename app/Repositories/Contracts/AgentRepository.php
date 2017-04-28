@@ -23,6 +23,13 @@ interface AgentRepository extends RepositoryInterface
     public function addAgent($user_id);
 
     /**
+     * Add User as an Agent
+     * @param $user_id
+     * @return mixed
+     */
+    public function addManager($user_id);
+
+    /**
      * Detach Agent role from a User
      * @param $user_id
      * @return mixed

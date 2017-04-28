@@ -46,7 +46,15 @@ class AgentController extends Controller
     public function addAgent($id)
     {
         $this->agents->addAgent($id);
-        return redirect(route('agents.index'))->with('User is now an Agent');
+        return redirect(route('agents.index'))->with('message','User is now an Agent');
+    }
+
+
+
+     public function addManager($id)
+    {
+        $this->agents->addManager($id);
+        return redirect(route('agents.index'))->with('message','User is now an manager');
     }
 
 

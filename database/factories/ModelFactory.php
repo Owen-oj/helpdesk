@@ -40,6 +40,6 @@ $factory->define(App\Repositories\Models\Ticket::class, function (Faker\Generato
 $factory->define(App\Repositories\Models\Role::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => 'agent',
+        'name' => 'manager',
     ];
 });

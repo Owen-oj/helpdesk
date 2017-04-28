@@ -48,6 +48,7 @@ Route::group(['middleware'=>'auth'],function (){
         Route::get('agents/users',['as'=>'agents.users','uses'=>'AgentController@users']);
         Route::post('agents/{id}/delete',['as'=>'agents.delete','uses'=>'AgentController@removeAgent']);
         Route::post('agents/create/{id}',['as'=>'agents.create','uses'=>'AgentController@addAgent']);
+        Route::post('manager/create/{id}',['as'=>'manager.create','uses'=>'AgentController@addManager']);
     });
 
     /*

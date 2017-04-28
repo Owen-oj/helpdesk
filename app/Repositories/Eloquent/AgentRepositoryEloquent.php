@@ -59,9 +59,23 @@ class AgentRepositoryEloquent extends BaseRepository implements AgentRepository
     {
         $agent = Role::where('name','agent')->first();
         $user = $this->find($user_id);
+        $user->detachRoles();
         $user->attachRole($agent);
         return true;
     }
+
+    public function addManager($user_id)
+    {
+          $manager = Role::where('name','manager')->first();
+        $user = $this->find($user_id);
+        $user->detachRoles();
+        $user->attachRole($manager);
+        return true;
+    }
+
+
+
+
 
     /**
      * Detach Agent role from a User

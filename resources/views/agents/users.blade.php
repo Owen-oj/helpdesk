@@ -35,6 +35,16 @@
 
                                     {!! Form::close() !!}
                                 </a>
+                                 <a class="btn btn-info" href=""   onclick="event.preventDefault();
+                                        confirm('Are Your Sure:');
+                                        document.getElementById('manager-{{$user->id}}').submit();">
+                                    make manager
+                                    {!! Form::open(['method'=>'post','route'=>['manager.create',$user->id],'id'=>'manager-'.$user->id,
+                                   'style'=>'display: none;'
+                                   ]) !!}
+
+                                    {!! Form::close() !!}
+                                </a>
                             </td>
                         </tr>
                     @endforeach

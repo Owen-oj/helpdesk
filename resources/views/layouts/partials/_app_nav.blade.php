@@ -5,8 +5,10 @@
                 <ul class="nav nav-pills">
                     <li role="presentation" class=""><a href="{{route('tickets.index')}}">Active Tickets</a></li>
                     <li role="presentation"><a href="{{route('tickets.complete')}}">Completed Tickets</a></li>
-                    @role(('admin'))
+                     @role(('manager','admin'))
                     <li role="presentation"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                    @endrole
+                     @role(('admin'))
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             Settings<span class="caret"></span></a>
