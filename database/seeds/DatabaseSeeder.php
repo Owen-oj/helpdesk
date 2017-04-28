@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         //User::truncate();
 
         factory(Role::class,1)->create();
-        factory(User::class,1)->create();
+        //factory(User::class,1)->create();
 
         Model::reguard();
     }

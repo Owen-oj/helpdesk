@@ -46,7 +46,7 @@ class SendNewTicketAlert extends Notification
         return (new MailMessage)
                     ->line('You have a new ticket assigned to you.' .$this->ticket->subject)
                     ->action('Resolve', 'https://laravel.com')
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for using Gimpa help desk System!');
     }
 
     /**
