@@ -95,7 +95,7 @@ class TicketRepositoryEloquent extends BaseRepository implements TicketRepositor
        $ticket =  $this->create($data+ [
             'agent_id'=>$agent->id,
             'user_id'=>auth()->id(),
-            'status_id'=>8,
+            'status_id'=>1,
            'location' => 'test'
            ]);
 
@@ -116,6 +116,16 @@ class TicketRepositoryEloquent extends BaseRepository implements TicketRepositor
         $agent = User::whereHas('roles',function ($query){
            $query->where('name','agent');
         })->inRandomOrder()->limit(1)->get();
+
+       // dd($agent->isEmpty());
+
+        if ($agent->isEmpty()) {
+           $admin =  User::whereHas('roles',function($query){
+            $query->where('name','admin');
+           })->first();
+
+           return $admin;
+        }else
 
         return $agent;
     }
