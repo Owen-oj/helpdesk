@@ -12,6 +12,8 @@
 */
 
 
+
+
 Route::get('/', 'HomeController@index');
 
 Auth::routes();
@@ -66,6 +68,7 @@ Route::group(['middleware'=>'auth'],function (){
     */
     Route::get('tickets/complete',['as'=>'tickets.complete','uses'=>'TicketController@indexComplete']);
     Route::get('tickets/indextable/{completed}',['as'=>'tickets.indextable','uses'=>'TicketController@indexTable']);
+    Route::post('tickets/solution{ticket}',['as'=>'ticket.solution','uses'=>'TicketController@markComplete']);
     Route::resource('tickets','TicketController');
 
 
@@ -75,6 +78,13 @@ Route::group(['middleware'=>'auth'],function (){
     |--------------------------------------------------------------------------
     */
     Route::resource('comments','CommentsController');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Solutions
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('solutions','SolutionsController');
 });
 
 Route::get('testapi/{completed}','Api\TicketController@index');

@@ -5,6 +5,8 @@ namespace App\Repositories\Composers;
 
 
 use App\Repositories\Contracts\TicketRepository;
+use App\Repositories\Models\Category;
+use App\Repositories\Models\Solution;
 use App\User;
 use Illuminate\View\View;
 
@@ -22,6 +24,7 @@ class DashboardComposer
         $view->with('allTickets',$this->tickets->all()->count());
         $view->with('openTickets',$this->tickets->tickets(0)->count());
         $view->with('closedTickets',$this->tickets->tickets(1)->count());
+        $view->with('solutions',Solution::all());
 
         $datacounts = User::listAll();
         $users = User::listUsers();

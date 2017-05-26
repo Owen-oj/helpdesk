@@ -1,6 +1,7 @@
 <?php
 
 use App\Repositories\Models\Role;
+use App\Repositories\Models\Status;
 use App\Repositories\Models\Ticket;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         //User::truncate();
 
         factory(Role::class,1)->create();
+        factory(Status::class,3)->create();
         //factory(User::class,1)->create();
 
         Model::reguard();

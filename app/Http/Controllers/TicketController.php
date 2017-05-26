@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\TicketRepository;
 use App\Repositories\Models\Agent;
+use App\Repositories\Models\Solution;
+use App\Repositories\Models\Status;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -129,8 +131,8 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //todo use different method
-        $this->tickets->update(['completed_at'=>Carbon::now()],$id);
+
+        $this->tickets->update($request->all(),$id);
 
         return redirect()->back()->with('message','Updated');
 
@@ -138,8 +140,11 @@ class TicketController extends Controller
 
     public function markComplete(Request $request ,$id)
     {
-        $this->middleware('auth');
-        $this->tickets->update(['completed_at'=>Carbon::now()],$id);
+        $this->middleware('role:admin|agent');
+
+        Solution::create($request->all()+['agent_id'=>auth()->id()]);
+
+        $this->tickets->update(['status_id'=>Status::where('name','Complete')->first()->id,'completed_at'=>Carbon::now()],$id);
 
         return redirect()->back()->with('message','Updated');
     }

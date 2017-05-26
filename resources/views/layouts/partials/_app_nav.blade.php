@@ -5,7 +5,8 @@
                 <ul class="nav nav-pills">
                     <li role="presentation" class=""><a href="{{route('tickets.index')}}">Active Tickets</a></li>
                     <li role="presentation"><a href="{{route('tickets.complete')}}">Completed Tickets</a></li>
-                     @role(('manager','admin'))
+                    <li role="presentation"><a href="{{route('solutions.index')}}">Knowledge Base</a></li>
+                     @role((['manager','admin']))
                     <li role="presentation"><a href="{{route('dashboard')}}">Dashboard</a></li>
                     @endrole
                      @role(('admin'))

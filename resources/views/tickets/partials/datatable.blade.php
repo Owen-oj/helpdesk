@@ -6,7 +6,7 @@
         <th>Status</th>
         <th>Last Updated</th>
         <th>Agent</th>
-        @role(('admin','agent'))
+        @role((['admin','agent']))
         <th>Priority</th>
         <th>Owner</th>
         <th>Category</th>
@@ -25,10 +25,10 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'subject', name: 'Subject' },
-                { data: 'status_id', name: 'statuses.name' },
+                { data: 'statuses.name', name: 'statuses.name' },
                 { data: 'updated_at', name: 'updated_at' },
                 { data: 'agents.name', name: 'agents.name' },
-                @role(('admin','agent'))
+                @role((['admin','agent']))
                 { data: 'priorities.name', name: 'priorities.name' },
                 { data: 'owners.name', name: 'owners.name' },
                 { data: 'categories.name', name: 'categories.name' },

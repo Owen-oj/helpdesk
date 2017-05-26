@@ -6,19 +6,33 @@
         <div class="panel-heading">
             <h2>
                 {{$ticket->subject}}
-                <span class="pull-right">
-                    <a href="#" class="btn btn-primary " onclick="event.preventDefault();
-                            document.getElementById('complete').submit()">Mark Complete
-                        {!! Form::open(['method'=>'put','id'=>'complete','hidden','route'=>['tickets.update',$ticket->id]]) !!}
-                        {!! Form::close() !!}
+                <div class="pull-right">
+                    <a href="#" class="btn btn-primary "  data-toggle="modal" data-target="#addSolution">Mark Complete
                     </a>
+                    <span class="dropdown">
+                      <a class="btn btn-primary dropdown dropdown-toggle" type="button" data-toggle="dropdown">Change Status
+                      <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              @foreach($statuses as $stat)
+                                <li><a href="#" onclick="event.preventDefault();
+                            document.getElementById('status-change-'+'{{$stat->name}}').submit()">{{$stat->name}}
+                                    {!! Form::open(['method'=>'put','id'=>'status-change-'.$stat->name,'hidden','route'=>['tickets.update',$ticket->id]]) !!}
+
+                                        {!! Form::text('status_id',$statuses->where('name',$stat->name)->first()->id,null) !!}
+                                        {!! Form::close() !!}
+                                    </a>
+                                </li>
+                              @endforeach
+
+                          </ul>
+                    </span>
                     <a href="#" class="btn btn-success ">Edit</a>
                     <a href="#" class="btn btn-danger " onclick="event.preventDefault();
                                                      document.getElementById('del-form').submit()">Delete
                         {!! Form::open(['method'=>'delete','id'=>'del-form','hidden','route'=>['tickets.destroy',$ticket->id]]) !!}
                         {!! Form::close() !!}
                     </a>
-                </span>
+                </div>
 
             </h2>
 
@@ -70,11 +84,18 @@
         </div>
     </div>
     @include('partials._comment_modal')
+    @include('partials._solution')
 @endsection
 @section('js')
     <script>
         $(document).ready(function() {
             $('#summertext').summernote();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#summer-solution').summernote();
         });
     </script>
 @endsection

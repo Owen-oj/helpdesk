@@ -40,15 +40,8 @@ class SolutionsController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $solutions = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $solutions,
-            ]);
-        }
 
         return view('solutions.index', compact('solutions'));
     }
@@ -67,26 +60,16 @@ class SolutionsController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $solution = $this->repository->create($request->all());
+            $solution = $this->repository->create($request->all()+['agent_id'=>auth()->id()]);
 
             $response = [
                 'message' => 'Solution created.',
                 'data'    => $solution->toArray(),
             ];
 
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
+
 
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }

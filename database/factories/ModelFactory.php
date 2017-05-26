@@ -43,3 +43,12 @@ $factory->define(App\Repositories\Models\Role::class, function (Faker\Generator 
         'name' => 'manager',
     ];
 });
+
+
+$factory->define(App\Repositories\Models\Status::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->unique()->randomElement(['Pending','On-Hold','Complete']),
+        'color' => $faker->unique()->randomElement(['red','blue','Green']),
+    ];
+});
