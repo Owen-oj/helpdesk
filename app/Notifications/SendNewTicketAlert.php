@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Repositories\Models\Ticket;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -32,7 +33,7 @@ class SendNewTicketAlert extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','nexmo'];
     }
 
     /**
@@ -44,9 +45,24 @@ class SendNewTicketAlert extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('New Ticket')
                     ->line('You have a new ticket assigned to you.' .$this->ticket->subject)
-                    ->action('Resolve', 'https://laravel.com')
+                    ->action('Resolve', 'http://helpdesk.dev/tickets')
                     ->line('Thank you for using Gimpa help desk System!');
+    }
+
+    /**
+     * Get the Nexmo / SMS representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return NexmoMessage
+     */
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage())
+            ->content('A new ticket '.$this->ticket->subject.' has been assigned to you. 
+            visit your account to resolve now.');
+
     }
 
     /**

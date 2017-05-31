@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Notifications\SendNewTicketAlert;
+use App\Notifications\TicketAssignedAlert;
 use App\User;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -100,6 +101,7 @@ class TicketRepositoryEloquent extends BaseRepository implements TicketRepositor
            ]);
 
        $agent->notify(new SendNewTicketAlert($ticket));
+       auth()->user()->notify(new TicketAssignedAlert());
 
        return $ticket;
 

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone_number',
     ];
 
    // protected $with = ['agentTickets'];
@@ -31,12 +31,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * An agent has many tickets assigned to him/her
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function agentTickets()
     {
         return $this->hasMany(Ticket::class,'agent_id','id');
     }
 
 
+    /**
+     * List all agents in the system
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public static function listAll()
     {
         $agents = User::with('agentTickets')->whereHas('roles',function ($query){
@@ -46,6 +54,10 @@ class User extends Authenticatable
         return $agents;
     }
 
+    /**
+     * List all normal users in the system
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public static function listUsers()
     {
         $users = User::with('userTickets')->whereHas('roles',function ($query){
@@ -54,13 +66,32 @@ class User extends Authenticatable
         return $users;
     }
 
+    /**
+     * Get the total tickets assigned to an agent
+     * @return mixed
+     */
     public function getTicketCountAttribute()
     {
         return $this->agentTickets->count();
     }
 
+    /**
+     * A ticket belongs to a user
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function userTickets()
     {
         return $this->hasMany(Ticket::class,'user_id','id');
+    }
+
+    /**
+     * Get user's phone number to send text message
+     * @return string
+     */
+    public function routeNotificationForNexmo()
+    {
+
+        //remove the leading 0 from the phone number and append 233 to it
+        return '233'.substr($this->phone_number,1);
     }
 }
