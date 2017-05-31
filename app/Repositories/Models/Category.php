@@ -35,5 +35,10 @@ class Category extends Model implements Transformable
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
-   }
+    }
+
+    public function getTicketCountAttribute()
+    {
+        return $this->tickets->count();
+    }
 }

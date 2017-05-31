@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4">
+        <div class="col-lg-3 col-md-8">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <div class="row">
@@ -61,14 +61,14 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+   {{-- <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">Categories</div>
             <div class="panel-body">
                 <canvas id="categories"></canvas>
             </div>
         </div>
-    </div>
+    </div>--}}
 </div>
 <div class="col-md-4">
     <div class="panel panel-default">
@@ -229,11 +229,14 @@
     });
 </script>
 
-<script>
+{{--<script>
+    let ct = '{{$cat}}';
+        let n = ct.replace(/['"]+/g, '');
+        console.log(n);
     let cat = {
-        labels: ['category1','category2','category3'],
+
         datasets:[
-            {data:[30,70,40],
+            {data:n,
 
                 backgroundColor: [
                     "#FF6384",
@@ -249,5 +252,5 @@
         type: 'pie',
         data: cat,
     });
-</script>
+</script>--}}
 @endpush
