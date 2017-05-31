@@ -3,6 +3,8 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <ul class="nav nav-pills">
+                    <li><img src="{{asset('img/logo.jpg')}}" width="50" height="50" alt="{{ config('app.name') }}">
+                    </li>
                     <li role="presentation" class=""><a href="{{route('tickets.index')}}">Active Tickets</a></li>
                     <li role="presentation"><a href="{{route('tickets.complete')}}">Completed Tickets</a></li>
                     <li role="presentation"><a href="{{route('solutions.index')}}">Knowledge Base</a></li>

@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Notifications\SendNewTicketAlert;
 use App\Notifications\TicketAssignedAlert;
+use App\Repositories\Models\Status;
 use App\User;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -96,7 +97,7 @@ class TicketRepositoryEloquent extends BaseRepository implements TicketRepositor
        $ticket =  $this->create($data+ [
             'agent_id'=>$agent->id,
             'user_id'=>auth()->id(),
-            'status_id'=>1,
+            'status_id'=>Status::where('name','pending')->first()->id,
            'location' => 'test'
            ]);
 
