@@ -16,8 +16,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => 'Clem Klement',
-        'email' => 'admin@gimpa.com',
+        'name' => 'Owen Jubilant',
+        'email' => 'admin@test.com',
+        'phone_number' => '0545169030',
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
@@ -40,7 +41,7 @@ $factory->define(App\Repositories\Models\Ticket::class, function (Faker\Generato
 $factory->define(App\Repositories\Models\Role::class, function (Faker\Generator $faker) {
 
     return [
-        'name' => 'manager',
+        'name' =>  $faker->unique()->randomElement(['manager','admin','user']),
     ];
 });
 

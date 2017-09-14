@@ -1,4 +1,4 @@
-<?php
+-<?php
 
 use App\Repositories\Models\Role;
 use App\Repositories\Models\Status;
@@ -19,9 +19,11 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         //User::truncate();
 
-        factory(Role::class,1)->create();
-        factory(Status::class,3)->create();
-        //factory(User::class,1)->create();
+        //factory(Role::class,3)->create();
+        //factory(Status::class,3)->create();
+        factory(User::class,1)->create();
+        User::first()->attachRole(Role::where('name','admin')->first());
+        
 
         Model::reguard();
     }
