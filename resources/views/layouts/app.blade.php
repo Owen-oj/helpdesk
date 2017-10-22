@@ -36,14 +36,10 @@
 
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
+    @include('partials._notify')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
     <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    @if(session('message'))
-    <script>
-        
-        swal("Good job!", "{{session('message')}}", "success");
-    </script>
-    @end
+
     @yield('js')
     @stack('scripts')
 </body>

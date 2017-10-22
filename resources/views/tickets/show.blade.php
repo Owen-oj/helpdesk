@@ -14,8 +14,7 @@
                       <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                               @foreach($statuses as $stat)
-                                <li><a href="#" onclick="event.preventDefault();
-                            document.getElementById('status-change-'+'{{$stat->name}}').submit()">{{$stat->name}}
+                                <li><a href="#" onclick="confirmUpdate('status-change-'+'{{$stat->name}}')">{{$stat->name}}
                                     {!! Form::open(['method'=>'put','id'=>'status-change-'.$stat->name,'hidden','route'=>['tickets.update',$ticket->id]]) !!}
 
                                         {!! Form::text('status_id',$statuses->where('name',$stat->name)->first()->id,null) !!}
@@ -27,8 +26,7 @@
                           </ul>
                     </span>
                     <a href="#" class="btn btn-success ">Edit</a>
-                    <a href="#" class="btn btn-danger " onclick="event.preventDefault();
-                                                     document.getElementById('del-form').submit()">Delete
+                    <a href="#" class="btn btn-danger " onclick="confirmDelete('del-form')">Delete
                         {!! Form::open(['method'=>'delete','id'=>'del-form','hidden','route'=>['tickets.destroy',$ticket->id]]) !!}
                         {!! Form::close() !!}
                     </a>
@@ -55,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            {{$ticket->content}}
+            {!! $ticket->content !!}
         </div>
     </div>
     <div class="panel panel-default">

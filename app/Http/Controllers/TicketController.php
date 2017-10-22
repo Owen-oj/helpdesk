@@ -134,7 +134,7 @@ class TicketController extends Controller
 
         $this->tickets->update($request->all(),$id);
 
-        return redirect()->back()->with('message','Updated');
+        return redirect()->back()->with('message','Ticket Updated');
 
     }
 

@@ -101,8 +101,9 @@ class TicketRepositoryEloquent extends BaseRepository implements TicketRepositor
            'location' => 'test'
            ]);
 
-       $agent->notify(new SendNewTicketAlert($ticket));
-       auth()->user()->notify(new TicketAssignedAlert());
+      /* $agent->notify(new SendNewTicketAlert($ticket));
+
+       auth()->user()->notify(new TicketAssignedAlert());*/
 
        return $ticket;
 
