@@ -10,4 +10,5 @@
             @include('tickets.partials.datatable',['completed'=>$completed])
         </div>
     </div>
+
 @stop

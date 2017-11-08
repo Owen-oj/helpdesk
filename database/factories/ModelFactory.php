@@ -54,6 +54,14 @@ $factory->define(App\Repositories\Models\Status::class, function (Faker\Generato
     ];
 });
 
+$factory->define(App\Repositories\Models\Priority::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->unique()->randomElement(['High','Medium','Low']),
+        'color' => $faker->randomElement(['red','blue','Green']),
+    ];
+});
+
 $factory->define(App\Repositories\Models\Category::class, function (Faker\Generator $faker) {
 
     return [

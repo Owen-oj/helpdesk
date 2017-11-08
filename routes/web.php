@@ -20,6 +20,14 @@ Auth::routes();
 
 Route::group(['middleware'=>'auth'],function (){
     Route::group(['prefix'=>'admin'],function (){
+
+        /*
+        |--------------------------------------------------------------------------
+        | Dashboard
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@dashboard']);
         /*
         |--------------------------------------------------------------------------
         | Status
@@ -37,7 +45,6 @@ Route::group(['middleware'=>'auth'],function (){
         /*
         |--------------------------------------------------------------------------
         | Category
-
         |--------------------------------------------------------------------------
         */
         Route::resource('categories','CategoryController');
@@ -54,13 +61,7 @@ Route::group(['middleware'=>'auth'],function (){
         Route::post('manager/create/{id}',['as'=>'manager.create','uses'=>'AgentController@addManager']);
     });
 
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard
-    |--------------------------------------------------------------------------
-    */
 
-    Route::get('dashboard',['as'=>'dashboard','uses'=>'HomeController@dashboard']);
 
     /*
     |--------------------------------------------------------------------------
@@ -88,11 +89,3 @@ Route::group(['middleware'=>'auth'],function (){
     Route::resource('solutions','SolutionsController');
 });
 
-Route::get('testapi/{completed}','Api\TicketController@index');
-Route::get('tickets-store/','Api\TicketController@store');
-
-Route::get('select-services','Api\SelectServices');
-
-
-
-//todo add administrator entity

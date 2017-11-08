@@ -61,6 +61,15 @@
                         </div>
                     </form>
                 </div>
+                
+                <div class="well">
+                <h3>Demo Accounts</h3>
+                    <ul>
+                        <li>Admin Account:-- admin@test.com  secret</li>
+                        <li>Agent Account:-- agent@test.com  secret</li>
+                        <p>User Account:--  user@test.com secret</p>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
