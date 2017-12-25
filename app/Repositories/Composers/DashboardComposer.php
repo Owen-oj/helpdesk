@@ -26,23 +26,25 @@ class DashboardComposer
         $view->with('allTickets',$this->tickets->all()->count());
         $view->with('openTickets',$this->tickets->tickets(0)->count());
         $view->with('closedTickets',$this->tickets->tickets(1)->count());
-        $view->with('solutions',Solution::all());
+        //$view->with('solutions',Solution::all());
 
         $datacounts = User::listAll();
         $users = User::listUsers();
 
         $pluck =$datacounts->pluck('name');
         $cat = $this->categories->with('tickets')->all();
-        $c = $cat->pluck('ticket_count');
-        $t = str_replace('"', "", $c);
-
-        //dd($t);
+        $category_ticket_counts = $cat->implode("ticket_count",',');
+        $category_names = $cat->implode("name",',');
+        $category_colours =  $cat->implode("color",',');
+        //dd(json_decode('"' . $category_colours . '"', false));
 
         //dd($v->all());
         $view->with('agentTicketCount',$datacounts->implode('ticketCount',','));
         $view->with('agents',$datacounts);
         $view->with('users',$users);
-        $view->with('cat',$t);
+        $view->with('cat',$category_ticket_counts);
+        $view->with('cat_names',$category_names);
+        $view->with('cat_colors',$category_colours);
     }
 
 }

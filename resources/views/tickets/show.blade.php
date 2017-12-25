@@ -84,7 +84,7 @@
     @include('partials._comment_modal')
     @include('partials._solution')
 @endsection
-@section('js')
+@push('scripts')
     <script>
         $(document).ready(function() {
             $('#summertext').summernote();
@@ -96,4 +96,4 @@
             $('#summer-solution').summernote();
         });
     </script>
-@endsection
+@endpush

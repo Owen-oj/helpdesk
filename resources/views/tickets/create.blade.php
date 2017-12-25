@@ -45,10 +45,10 @@
 
 @endsection
 
-@section('js')
+@push('scripts')
         <script>
         $(document).ready(function() {
             $('#summertext').summernote();
         });
     </script>
-@endsection
+@endpush

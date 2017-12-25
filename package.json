@@ -16,6 +16,7 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
+    "bootstrap-colorpicker": "^2.5.2",
     "codemirror": "^5.25.0",
     "summernote": "^0.8.2",
     "sweetalert": "^2.0.3"
