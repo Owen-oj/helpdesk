@@ -171,7 +171,6 @@ return [
         App\Providers\RepositoryServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        AdamWathan\EloquentOAuthL5\EloquentOAuthServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         App\Providers\PageServiceProvider::class,
