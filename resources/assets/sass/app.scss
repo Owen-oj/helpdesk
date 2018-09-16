@@ -2,8 +2,16 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
+
 // Variables
-@import "variables";
+@import "~bootswatch/flatly/variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "~bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";
+
+//bootswatch
+@import "~bootswatch/flatly/bootswatch";
+
+@import "~summernote/dist/summernote.css";

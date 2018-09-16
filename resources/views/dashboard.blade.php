@@ -266,14 +266,17 @@
             category_names = '{{$cat_names}}',
             category_colours = '{{$cat_colors}}';
 
+
+
         let test = {
             datasets: [{
-                data:category_counts.split(',')
+                data:category_counts.split(','),
+                backgroundColor: category_colours.split(',')
             }],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
             labels:category_names.split(','),
-            backgroundColor: category_colours.split(','),
+
         };
         let catec = document.querySelector('#categories').getContext('2d');
         let myPieChart = new Chart(catec, {

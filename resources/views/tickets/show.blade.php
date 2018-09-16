@@ -7,6 +7,7 @@
             <h2>
                 {{$ticket->subject}}
                 <div class="pull-right">
+
                     <a href="#" class="btn btn-primary "  data-toggle="modal" data-target="#addSolution">Mark Complete
                     </a>
                     <span class="dropdown">
