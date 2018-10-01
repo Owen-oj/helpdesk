@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts._setup')
 @section('title','Users')
-@section('content')
+@section('page-content')
     <div class="panel panel-default">
         <div class="panel-heading">Users
             <a class="btn btn-primary pull-right" href="#">Create User</a>

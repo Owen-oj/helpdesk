@@ -77,4 +77,18 @@ class Ticket extends Model implements Transformable
     {
         return $this->hasMany(Comment::class);
     }
+
+    /**
+     * @param $query
+     * @param $is_completed
+     * @return mixed
+     */
+    public function scopeActive($query, $is_completed)
+    {
+        if ($is_completed){
+            return $query->whereNotNull('completed_at');
+        }
+        return $query->whereNull('completed_at');
+
+    }
 }

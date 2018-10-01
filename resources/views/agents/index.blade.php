@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts._setup')
 @section('title','Agents')
-@section('content')
+@section('page-content')
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2>Agent

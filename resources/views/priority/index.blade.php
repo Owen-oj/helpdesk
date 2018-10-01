@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts._setup')
 @section('title','Priorities')
-@section('content')
+@section('page-content')
     <div class="panel panel-default">
-        <div class="panel-heading">Priority
+        <div class="panel-heading">Priorities
             <a class="btn btn-primary pull-right" href="{{route('priorities.create')}}">Create Priority</a>
+            <div class="clearfix"></div>
         </div>
         <div class="panel-body">
             <table class="table table-striped table-hover"  id="indexTables">
@@ -25,9 +26,9 @@
                                 {{$priority->name}}
                             </td>
                             <td>
-                                <a class="btn btn-info" href="{{route('priorities.edit',$priority->id)}}">Edit</a>
+                                <a class="btn btn-info btn-sm" href="{{route('priorities.edit',$priority->id)}}">Edit</a>
 
-                                <a class="btn btn-danger" href=""   onclick="event.preventDefault();
+                              {{--  <a class="btn btn-danger" href=""   onclick="event.preventDefault();
                                                      confirm('Are Your Sure:');
                                                      document.getElementById('{{$priority->id}}').submit();">
                                     Delete
@@ -36,7 +37,7 @@
                                    ]) !!}
 
                                     {!! Form::close() !!}
-                                </a>
+                                </a>--}}
                             </td>
                         </tr>
                     @endforeach

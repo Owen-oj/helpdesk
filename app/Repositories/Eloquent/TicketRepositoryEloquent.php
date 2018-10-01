@@ -42,7 +42,7 @@ class TicketRepositoryEloquent extends BaseRepository implements TicketRepositor
      */
     public function tickets($complete)
     {
-        if ($complete == 0) {
+        if (!$complete) {
             return Ticket::whereNull('completed_at')->select('tickets.*');
 
         } else {

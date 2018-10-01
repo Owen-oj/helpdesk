@@ -6,6 +6,7 @@ use App\Repositories\Composers\DashboardComposer;
 use App\Repositories\Models\Category;
 use App\Repositories\Models\Priority;
 use App\Repositories\Models\Status;
+use App\Repositories\Models\Ticket;
 use Illuminate\Support\ServiceProvider;
 
 class PageServiceProvider extends ServiceProvider
@@ -17,19 +18,16 @@ class PageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //todo cleanup code, this is too clumsy
+        view()->composer('layouts.app',function ($view){
+            $view->with('active_tickets_count',Ticket::active(0)->count());
+        });
         view()->composer('tickets.create',function ($view){
             $select = [
                 'category'=>Category::pluck('name','id'),
                 'priority'=>Priority::pluck('name','id')
             ];
            $view->with('select',$select);
-        });
-
-        view()->composer('dashboard',function ($view){
-
-                $categories = Category::with('tickets')->get();
-
-            $view->with('categories',$categories);
         });
 
         view()->composer('dashboard',DashboardComposer::class);

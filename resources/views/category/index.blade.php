@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts._setup')
 @section('title','Categories')
-@section('content')
+@section('page-content')
     <div class="panel panel-default">
         <div class="panel-heading">Category
             <a class="btn btn-primary pull-right" href="{{route('categories.create')}}">Create Category</a>

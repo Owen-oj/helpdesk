@@ -26,6 +26,7 @@ class DashboardComposer
         $view->with('allTickets',$this->tickets->all()->count());
         $view->with('openTickets',$this->tickets->tickets(0)->count());
         $view->with('closedTickets',$this->tickets->tickets(1)->count());
+        $categories = Category::with('tickets')->get();
         //$view->with('solutions',Solution::all());
 
         $datacounts = User::listAll();
@@ -45,6 +46,7 @@ class DashboardComposer
         $view->with('cat',$category_ticket_counts);
         $view->with('cat_names',$category_names);
         $view->with('cat_colors',$category_colours);
+        $view->with('categories',$categories);
     }
 
 }

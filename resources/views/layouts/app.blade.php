@@ -27,7 +27,6 @@
        @include('layouts.partials._main_nav')
 
         <div class="container">
-            @include('layouts.partials._app_nav')
             @yield('content')
         </div>
 

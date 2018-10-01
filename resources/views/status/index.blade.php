@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('layouts._setup')
 
-@section('content')
+@section('page-content')
     <div class="panel panel-default">
         <div class="panel-heading">Status
             <a class="btn btn-primary pull-right" href="{{route('statuses.create')}}">Create Status</a>
+            <div class="clearfix"></div>
         </div>
         <div class="panel-body">
             <table class="table table-striped table-hover"  id="indexTables">
@@ -27,7 +28,7 @@
                             <td>
                                 <a class="btn btn-info" href="{{route('statuses.edit',$status->id)}}">Edit</a>
 
-                                <a class="btn btn-danger" href=""   onclick="event.preventDefault();
+                               {{-- <a class="btn btn-danger" href=""   onclick="event.preventDefault();
                                                      confirm('Are Your Sure:');
                                                      document.getElementById('{{$status->id}}').submit();">
                                     Delete
@@ -36,7 +37,7 @@
                                    ]) !!}
 
                                     {!! Form::close() !!}
-                                </a>
+                                </a>--}}
                             </td>
                         </tr>
                     @endforeach
