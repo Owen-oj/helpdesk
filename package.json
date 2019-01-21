@@ -21,9 +21,9 @@
   "dependencies": {
     "bootstrap-colorpicker": "^2.5.3",
     "bootstrap-fileinput": "^4.5.2",
-    "bootswatch": "^3.3.7",
+    "bootswatch": "^3.4.0",
     "chart.js": "^2.7.3",
-    "codemirror": "^5.42.2",
+    "codemirror": "^5.43.0",
     "datatables.net-bs": "^1.10.16",
     "datatables.net-buttons-bs": "^1.5.4",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
